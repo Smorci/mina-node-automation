@@ -5,3 +5,4 @@ output "public_ip" {
 output "user" {
   value = data.google_client_openid_userinfo.me.email
 }
+

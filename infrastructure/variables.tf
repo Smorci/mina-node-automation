@@ -4,6 +4,11 @@ variable "ubuntu-pro-2004-sku" {
   default     = "ubuntu-os-pro-cloud/ubuntu-pro-2004-lts"
 }
 
+variable "nixos_gce_image" {
+  type        = string
+  description = "Custom Nixos Image for GCP"
+}
+
 variable "linux_instance_type" {
   type        = string
   description = "VM instance type for Linux Server"

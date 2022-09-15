@@ -21,18 +21,6 @@ resource "google_compute_instance" "mina_host" {
 
   metadata = {
     ssh-keys = "${split("@", data.google_client_openid_userinfo.me.email)[0]}:${tls_private_key.ssh.public_key_openssh}"
-    startup-script = <<-EOF
-      #cloud-config
-      runcmd:
-        - |
-          # We set root as /dev/disk/by-label/nixos in server.nix, make sure this is available.
-          ROOT="$(mount | grep ' / ' | cut -d ' ' -f 1)"
-          e2label "$ROOT" nixos
-          # Infect!
-          curl https://raw.githubusercontent.com/elitak/nixos-infect/master/nixos-infect \
-            | NIX_CHANNEL=nixos-21.11 bash 2>&1 \
-            | tee /tmp/infect.log
-    EOF
   }
 }
 
