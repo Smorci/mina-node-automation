@@ -1,7 +1,7 @@
-variable "ubuntu-pro-1804-sku" {
+variable "ubuntu-pro-2004-sku" {
   type        = string
-  description = "SKU for Ubuntu PRO 18.0 LTS"
-  default     = "ubuntu-os-pro-cloud/ubuntu-pro-1804-lts"
+  description = "SKU for Ubuntu PRO LTS"
+  default     = "ubuntu-os-pro-cloud/ubuntu-pro-2004-lts"
 }
 
 variable "linux_instance_type" {
@@ -11,29 +11,29 @@ variable "linux_instance_type" {
 }
 
 variable "project_credentials" {
-  type = string
+  type        = string
   description = "A relative path to the service account credential file"
 }
 
 variable "project_region" {
-  type = string
+  type        = string
   description = "Google Cloud Project region"
-  default = "us-central1"
+  default     = "us-central1"
 }
 
 variable "project_zone" {
-  type = string
+  type        = string
   description = "Google Cloud Project zone"
-  default = "us-central1-c"
+  default     = "us-central1-c"
 }
 
 variable "project_name" {
-  type = string
+  type        = string
   description = "Name of the Google Cloud Project"
-  default = "mina-node-host"
+  default     = "mina-node-host"
 }
 
 variable "network_subnet_cidr" {
-  type = string
+  type        = string
   description = "The CIDR for the network subnet"
 }

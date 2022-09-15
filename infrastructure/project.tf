@@ -4,8 +4,16 @@ terraform {
       source  = "hashicorp/google"
       version = "3.5.0"
     }
+    tls = {
+      source  = "hashicorp/tls"
+      version = "3.1.0"
+    }
   }
   required_version = ">= 0.12"
+}
+
+provider "tls" {
+
 }
 
 provider "google" {
