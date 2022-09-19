@@ -22,19 +22,15 @@
       let
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         terraform = pkgs.terraform;
+        arion = pkgs.arion;
         gcloud = pkgs.google-cloud-sdk;
       in
-
-
-      # nixosConfigurations.server1.config.system.build.googleComputeImage {
-        #   configFile = [ ./configuration.nix ];
-        # };
 
       pkgs.writeShellApplication
         {
           name = "deploy-mina-node";
 
-          runtimeInputs = [ terraform ];
+          runtimeInputs = [ terraform arion ];
 
           text = ''
             nix build ".#nixosConfigurations.server1.config.system.build.googleComputeImage"
@@ -61,7 +57,7 @@
       modules =
         [
           "${nixpkgs}/nixos/modules/virtualisation/google-compute-image.nix"
-          ./configuration.nix
+          ./conf/configuration.nix
         ];
     };
 
