@@ -1,12 +1,21 @@
-variable "ubuntu-pro-2004-sku" {
-  type        = string
-  description = "SKU for Ubuntu PRO LTS"
-  default     = "ubuntu-os-pro-cloud/ubuntu-pro-2004-lts"
-}
-
 variable "nixos_gce_image" {
   type        = string
   description = "Custom Nixos Image for GCP"
+}
+
+variable "nixos_gce_image_path" {
+  type        = string
+  description = "Local path to custom Nixos Image for GCP"
+}
+
+variable "nixos_gce_image_id" {
+  type        = string
+  description = "Id of custom Nixos Image for GCP"
+}
+
+variable "nixos_gce_image_family" {
+  type        = string
+  description = "Family of custom Nixos Image for GCP"
 }
 
 variable "linux_instance_type" {
@@ -17,25 +26,22 @@ variable "linux_instance_type" {
 
 variable "project_credentials" {
   type        = string
-  description = "A relative path to the service account credential file"
+  description = "A absolute path to the service account credential file on your local system"
 }
 
 variable "project_region" {
   type        = string
   description = "Google Cloud Project region"
-  default     = "us-central1"
 }
 
 variable "project_zone" {
   type        = string
   description = "Google Cloud Project zone"
-  default     = "us-central1-c"
 }
 
 variable "project_name" {
   type        = string
   description = "Name of the Google Cloud Project"
-  default     = "mina-node-host"
 }
 
 variable "network_subnet_cidr" {

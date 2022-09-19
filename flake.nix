@@ -37,9 +37,23 @@
           runtimeInputs = [ terraform ];
 
           text = ''
-            img_path=$(echo ${self.nixosConfigurations.server1.config.system.build.googleComputeImage}/*.tar.gz)
-            img_name=$(basename "$img_path")
+            nix build ".#nixosConfigurations.server1.config.system.build.googleComputeImage"
+          
+            TF_VAR_nixos_gce_image_path=$(echo ${self.nixosConfigurations.server1.config.system.build.googleComputeImage}/*.tar.gz)
+            TF_VAR_nixos_gce_image=$(basename "$TF_VAR_nixos_gce_image_path")
+            TF_VAR_nixos_gce_image_id=$(echo "$TF_VAR_nixos_gce_image" | sed 's|.raw.tar.gz$||;s|\.|-|g;s|_|-|g')
+            TF_VAR_nixos_gce_image_family=$(echo "$TF_VAR_nixos_gce_image_id" | cut -d - -f1-4)
+
+            pushd infrastructure
+            terraform init -upgrade
+            terraform apply \
+            -var nixos_gce_image_path="$TF_VAR_nixos_gce_image_path" \
+            -var nixos_gce_image="$TF_VAR_nixos_gce_image" \
+            -var nixos_gce_image_id="$TF_VAR_nixos_gce_image_id" \
+            -var nixos_gce_image_family="$TF_VAR_nixos_gce_image_family"
+            popd
           '';
+
         };
 
     nixosConfigurations.server1 = nixpkgs.lib.nixosSystem {

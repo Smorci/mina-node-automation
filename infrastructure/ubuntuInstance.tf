@@ -7,7 +7,7 @@ resource "google_compute_instance" "mina_host" {
 
   boot_disk {
     initialize_params {
-      image = var.ubuntu-pro-2004-sku
+      image = google_compute_image.nixos_gce_image.self_link
     }
   }
 
