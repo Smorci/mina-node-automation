@@ -1,16 +1,16 @@
-{ config, modulesPath, pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
 
-  imports = [ "${modulesPath}/virtualisation/qemu-vm.nix" ];
+  # imports = [ "${modulesPath}/virtualisation/qemu-vm.nix" ];
 
   virtualisation = {
     docker.enable = true;
-    memorySize = 8192;
-    diskSize = 100000;
-    forwardPorts = [
-      { from = "host"; host.port = 8302; guest.port = 8302; }
-    ];
+    # memorySize = 8192;
+    # diskSize = 100000;
+    # forwardPorts = [
+    #   { from = "host"; host.port = 8302; guest.port = 8302; }
+    # ];
   };
 
   # virtualisation.podman.enable = true;
