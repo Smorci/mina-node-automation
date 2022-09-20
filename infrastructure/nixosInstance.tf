@@ -8,6 +8,7 @@ resource "google_compute_instance" "mina_host" {
   boot_disk {
     initialize_params {
       image = google_compute_image.nixos_gce_image.self_link
+      size  = 20
     }
   }
 

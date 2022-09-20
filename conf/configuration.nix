@@ -13,10 +13,6 @@
     # ];
   };
 
-  # virtualisation.podman.enable = true;
-  # virtualisation.podman.dockerSocket.enable = true;
-  # virtualisation.podman.defaultNetwork.dnsname.enable = true;
-
   environment.systemPackages = with pkgs; [
     arion
     vim
@@ -34,7 +30,12 @@
     arion-compose = {
       source = ./../arion/arion-compose.nix;
       target = "arion-compose.nix";
-      mode = "0744";
+      mode = "0644";
+    };
+    arion-pkgs = {
+      source = ./../arion/arion-pkgs.nix;
+      target = "arion-pkgs.nix";
+      mode = "0644";
     };
   };
 

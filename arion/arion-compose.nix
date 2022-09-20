@@ -8,7 +8,7 @@
         useHostStore = true;
         restart = "always";
         container_name = "mina";
-        volumes = [ "/etc/mina-env:/entrypoint.d/mina-env:ro" "/etc/keys:/keys:ro" "/etc/mina-config:/root/.mina-config" ];
+        volumes = [ "/etc/mina-env:/entrypoint.d/mina-env" "/etc/keys:/keys" "/etc/mina-config:/root/.mina-config" ];
         ports = [
           "8302:8302" # host:container
         ];
