@@ -2,40 +2,33 @@
 
 {
 
-  # imports = [ "${modulesPath}/virtualisation/qemu-vm.nix" ];
-
   virtualisation = {
     docker.enable = true;
-    # memorySize = 8192;
-    # diskSize = 100000;
-    # forwardPorts = [
-    #   { from = "host"; host.port = 8302; guest.port = 8302; }
-    # ];
+    arion = {
+      backend = "docker";
+      projects.mina.settings = {
+        imports = [ ./../arion/arion-compose.nix ];
+      };
+    };
+  };
+
+  networking = {
+    nameservers = [ "8.8.8.8" ];
+    hostName = "mina-host";
   };
 
   environment.systemPackages = with pkgs; [
     arion
     vim
     nettools
+    dig
   ];
-
-  documentation.enable = false;
 
   environment.etc = {
     mina-env = {
       text = ''
         export PEER_LIST_URL=https://storage.googleapis.com/mina-seed-lists/mainnet_seeds.txt
       '';
-    };
-    arion-compose = {
-      source = ./../arion/arion-compose.nix;
-      target = "arion-compose.nix";
-      mode = "0644";
-    };
-    arion-pkgs = {
-      source = ./../arion/arion-pkgs.nix;
-      target = "arion-pkgs.nix";
-      mode = "0644";
     };
   };
 
@@ -58,6 +51,8 @@
     ];
   };
 
-  networking.hostName = "mina-host";
   services.openssh.enable = true;
+  documentation.enable = false;
+
+  system.stateVersion = "22.11";
 }

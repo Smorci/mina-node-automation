@@ -15,8 +15,8 @@ resource "google_compute_subnetwork" "network-subnet" {
   region        = var.project_region
 }
 
-resource "google_compute_firewall" "allow-http" {
-  name    = "mina-host-allow-http"
+resource "google_compute_firewall" "allow-ssh-mina" {
+  name    = "allow-ssh-mina"
   network = google_compute_network.vpc.name
   allow {
     protocol = "tcp"
