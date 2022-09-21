@@ -5,7 +5,7 @@ variable "nixos_gce_image" {
 
 variable "nixos_gce_image_path" {
   type        = string
-  description = "Local path to custom Nixos Image for GCP"
+  description = "Nix store path to custom Nixos Image for GCP"
 }
 
 variable "nixos_gce_image_id" {
@@ -21,12 +21,12 @@ variable "nixos_gce_image_family" {
 variable "linux_instance_type" {
   type        = string
   description = "VM instance type for Linux Server"
-  default     = "c2-standard-8"
+  default     = "c2-standard-8" # Mina has been tested on this instance type
 }
 
 variable "project_credentials" {
   type        = string
-  description = "A absolute path to the service account credential file on your local system"
+  description = "The absolute path to the service account credential file on your local system"
 }
 
 variable "project_region" {
