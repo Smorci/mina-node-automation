@@ -13,7 +13,7 @@ Currently there are two applications: deploy and destroy.
 
 ## Usage
 
-Clone the repository and run the following commands in the terminal.
+Clone the repository and enter the directory to run the following commands in the terminal.
 
 ### Deploy
 
